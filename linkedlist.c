@@ -45,14 +45,13 @@ void movenexttofront(struct node* x)
 
 void exchange(struct node *t, struct node *u)
 {
-  struct node *x, *y, *z;
+  struct node *x, *y;
   x = t->next;
-  y = t->next->next;
-  z = u->next->next;
-  t->next = u->next;
-  t->next->next = y;
-  u->next = x;
-  u->next->next = z;
+  y = u->next;
+  t->next = t->next->next;
+  u->next = u->next->next;
+  y->next = t->next; t->next = y;
+  x->next = u->next; u->next = x;
 }
 
 int main(int argc, char* argv[])
