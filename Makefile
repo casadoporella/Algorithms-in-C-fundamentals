@@ -14,4 +14,4 @@ josephus-array: josephus-array.c
 stack-parallel-array: stack-parallel-array.c
 
 clean: 
-	rm *~ euclidean gcd2d linkedlist doubly-linked-lists josephus-array stack-parallel-arrays tree-traversal
+	rm *~ euclidean gcd2d linkedlist doubly-linked-lists josephus-array stack-parallel-arrays tree-traversal sieve-of-erastosthenes
