@@ -108,6 +108,24 @@ void levelorder(struct node *n)
   }
 }
 
+void draw(struct node *n, int x, int y)
+{
+  printf("%c:\tx = %d\ty = %d\n", n->value, x, y);
+}
+
+void draw_tree(struct node* n, int l, int r, int y)
+/*recursive function that draws a binary tree with root at the centre of the page
+  left subtree rooted a centre of the left half, and right at centre of write side, etc..*/
+{
+  int m = (l+r)/2;
+  draw(n, m, y);
+  ++y;
+  if (n->l!=z)
+    draw_tree(n->l, l, m, y);
+  if (n->r!=z)
+    draw_tree(n->r, m, r, y);
+
+}
 
 /*
 tree:
@@ -148,6 +166,9 @@ int main(int argc, char *argv[])
   postorder(nodes[0]);
   printf("\nlevelorder: \n");
   levelorder(nodes[0]);
-  
+
+  int y=0; int l=0; int r=16;
+  printf("\ncoordinates for tree nodes:\n");
+  draw_tree(nodes[0], l, r, y);
   return 0;
 }
