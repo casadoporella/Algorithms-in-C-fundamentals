@@ -127,6 +127,21 @@ void draw_tree(struct node* n, int l, int r, int y)
 
 }
 
+int path_length(struct node *n, int l)
+/*returns the external path length of the tree given the root*/
+{
+  int t = 0;
+  if (n->l == z && n->r == z)
+    return l;
+  else {
+    if (n->l != z)
+      t += path_length(n->l, l+1);
+    if (n->r != z)
+      t += path_length(n->r, l+1);
+    return t;
+  }
+}
+
 /*
 tree:
          a
@@ -170,5 +185,7 @@ int main(int argc, char *argv[])
   int y=0; int l=0; int r=16;
   printf("\ncoordinates for tree nodes:\n");
   draw_tree(nodes[0], l, r, y);
+
+  printf("\nPath length of tree: %d\n", path_length(nodes[0], 0));
   return 0;
 }
