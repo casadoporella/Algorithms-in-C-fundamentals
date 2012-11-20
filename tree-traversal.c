@@ -94,6 +94,24 @@ void postorder(struct node* t)
   }
 }
 
+void postorder2(struct node *n)
+{
+  /*postorder generated from recursion removal*/
+  struct stack traverse_stack, visit_stack;
+  stackinit(&traverse_stack);
+  stackinit(&visit_stack);
+  push(&traverse_stack, n);
+  while (!stackempty(&traverse_stack)) {
+    n = pop(&traverse_stack);
+    if (n!=z) {
+      push(&traverse_stack, n->l); 
+      push(&traverse_stack, n->r);
+      push(&visit_stack, n); 
+    }
+  }
+  while (!stackempty(&visit_stack))
+    visit(pop(&visit_stack));
+}
 
 void levelorder(struct node *n)
 {
@@ -176,15 +194,20 @@ int main(int argc, char *argv[])
   nodes[2]->l = nodes[5];
   nodes[2]->r = nodes[6];
   
-  /*traverse tree*/
-  printf("postorder: ");
+  /*traverse Tree*/
+  printf("\npostorder: ");
   postorder(nodes[0]);
-  printf("\nlevelorder: \n");
+
+  printf("\nlevelorder: ");
   levelorder(nodes[0]);
 
   int y=0; int l=0; int r=16;
   printf("\ncoordinates for tree nodes:\n");
   draw_tree(nodes[0], l, r, y);
+
+  printf("\npostorder2: ");
+  postorder(nodes[0]);
+
 
   printf("\nPath length of tree: %d\n", path_length(nodes[0], 0));
   return 0;
